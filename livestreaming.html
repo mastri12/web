@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT Pro - Livestreaming</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px; /* Menambahkan padding untuk tampilan yang lebih baik */
+            min-height: 100vh; /* Memastikan body setidaknya setinggi viewport */
+        }
+
+        #livestreamContainer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #livestreamContainer h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        #navbar {
+            background-color: #5cb85c;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        #navbar a:hover {
+            color: #dff0d8;
+            text-decoration: underline;
+        }
+
+        .videoGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Grid dengan kolom responsif */
+            gap: 10px; /* Jarak antar item grid */
+            margin-bottom: 20px; /* Jarak bawah untuk grid */
+            width: 100%; /* Memastikan grid mengisi lebar kontainer */
+        }
+
+        .videoLink {
+            background-color: #ffcccb; /* Aksen pink */
+            border: 1px solid #ff9999;
+            border-radius: 5px;
+            padding: 5px; /* Padding kecil untuk video link */
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .videoLink:hover {
+            background-color: #ff9999; /* Warna lebih gelap saat hover */
+        }
+
+        .thumbnail {
+            width: 100%; /* Thumbnail mengisi lebar kontainer */
+            height: auto; /* Tinggi otomatis untuk menjaga rasio */
+            border-radius: 5px;
+            margin-bottom: 5px; /* Jarak bawah untuk thumbnail */
+        }
+
+        video {
+            width: 100%;
+            height: auto; /* Menggunakan auto untuk menjaga rasio */
+            max-height: 315px; /* Maksimal tinggi */
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; /* Menggunakan margin untuk jarak atas */
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .button {
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px; /* Padding untuk tombol */
+            cursor: pointer;
+            margin: 10px 0; /* Margin untuk tombol */
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            # livestreamContainer {
+                padding: 5%; /* Padding lebih besar pada layar kecil */
+            }
+
+            .videoLink {
+                padding: 5%; /* Padding lebih besar pada layar kecil */
+            }
+
+            .button {
+                padding: 5%; /* Padding lebih besar pada layar kecil */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="livestreamContainer">
+        <div id="navbar">
+            <a href="home.html">Home</a>
+            <a href="#">About</a>
+            <a href="livestreaming.html">Livestreaming</a>
+            <a href="#">Contact</a>
+        </div>
+        <h1>Livestreaming</h1>
+        <video id="videoPlayer" controls></video>
+        <div class="videoGrid">
+            <div class="videoLink" onclick="playVideo('https://sindikasi.inews.id/embed/video/YWdlbnQ9ZGVza3RvcCZ1cmw9aHR0cHMlM0ElMkYlMkZlbWJlZC5yY3RpcGx1cy5jb20lMkZsaXZlJTJGZ3R2JTJGaW5ld3NpZCZoZWlnaHQ9MTAwJTI1JndpZHRoPTEwMCUyNQ==')">
+                <img src="GTV.jpeg" alt="Thumbnail 1" class="thumbnail">
+                <p>GTV-HD</p>
+            </div>
+            <div class="videoLink" onclick="playVideo('https://sindikasi.inews.id/embed/video/YWdlbnQ9ZGVza3RvcCZ1cmw9aHR0cHMlM0ElMkYlMkZlbWJlZC5yY3RpcGx1cy5jb20lMkZsaXZlJTJGbW5jdHYlMkZpbmV3c2lkJmhlaWdodD0xMDAlMjUmd2lkdGg9MTAwJTI1')">
+                <img src="MNC.jpeg" alt="Thumbnail 2" class="thumbnail">
+                <p>MNCTV-HD</p>
+            </div>
+            <div class="videoLink" onclick="playVideo('https://sindikasi.inews.id/embed/video/YWdlbnQ9ZGVza3RvcCZ1cmw9aHR0cHMlM0ElMkYlMkZlbWJlZC5yY3RpcGx1cy5jb20lMkZsaXZlJTJGcmN0aSUyRmluZXdzaWQmaGVpZ2h0PTEwMCUyNSZ3aWR0aD0xMDAlMjU=')">
+                <img src="RCTI.png" alt="Thumbnail 3" class="thumbnail">
+                <p>RCTI-HD</p>
+            </div>
+            <div class="videoLink" onclick="playVideo('http://223.110.241.137:6610/gitv/live1/G_CCTV-13-HQ/G_CCTV-13-HQ/.m3u8')">
+                <img src="SCTV.jpeg" alt="Thumbnail 4" class="thumbnail">
+                <p>SCTV-HD</p>
+            </div>
+            <div class="videoLink" onclick="playVideo('https://www.cnnindonesia.com/tv/embed?ref=transmedia')">
+                <img src="CNN.png" alt="Thumbnail 5" class="thumbnail">
+                <p>CNN-HD</p>
+            </div>
+        </div>
+        <button class="button" onclick="goBack()">Kembali</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MT Pro. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        function playVideo(videoUrl) {
+            const video = document.getElementById('videoPlayer');
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(videoUrl);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play();
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = videoUrl;
+                video.addEventListener('loadedmetadata', function() {
+                    video.play();
+                });
+            }
+        }
+
+        function goBack() {
+            window.location.href = 'home.html';
+        }
+    </script>
+</body>
+ ```html
+</html>
